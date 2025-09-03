@@ -133,7 +133,9 @@ function CreateFedexPickUp {
         $response = $response.Content | ConvertFrom-Json
         return @{status = 200; pickUpCode = $response.output.pickupConfirmationCode}
     }
-
+    else{
+        return $response
+    }
 }
 
 
@@ -195,18 +197,21 @@ switch ($isTest) {
 
 
 $tomorrow = (Get-Date).AddDays(1)
-$pickUpStart = $tomorrow.ToString("yyyy-MM-dd") + "T09:00:00"
+$pickUpStart = $tomorrow.ToString("yyyy-MM-dd") + "T09:00:00" #tomorrow at 9am
+#$pickUpStart = (Get-Date).ToString("yyyy-MM-dd") + "T10:00:00" #TODAY
+Write-Host $pickUpStart
+
 
 $params = @{
-    contactName = "LuMar Bennett"
-    contactPhoneNumber = "9198934929"
-    streetAddress = @("8300 Health Park", "Ste 10")
-    city = "Raleigh"
+    contactName = "Madison Dunn"
+    contactPhoneNumber = "3365100363"
+    streetAddress = @("420 Gallimore Dairy Rd", "Ste B, BLDG 1")
+    city = "Greensboro"
     state = "NC"
-    zipCode = "27615"
+    zipCode = "27409"
     #$pickUpStart = ((Get-Date).AddHours(12)).ToString("yyyy-MM-ddTHH:mm:ss")
     pickUpStartTime = $pickUpStart
-    packageCount = 9
+    packageCount = 1
     url = $baseUrl
     accountNumber = $account
     bearerToken = $bearer
