@@ -183,12 +183,12 @@ $isTest = Read-Host -Prompt "Is this Production or Test? (P/T)"
 switch ($isTest) {
     "P" {
         $baseUrl = $productionUrl
-        $account = "722655630"
+        $account = ""
         $bearer = GetFedexToken -isProductionEnvironment $true
     }
     "T" {
         $baseUrl = $sandboxBaseUrl
-        $account = "740561073"
+        $account = ""
         $bearer = GetFedexToken -isProductionEnvironment $false
     }
     Default {Write-Host "ERROR: INVALID OPTION... PLEASE ENTER P OR T"; exit}
@@ -203,19 +203,19 @@ Write-Host $pickUpStart
 
 
 $params = @{
-    contactName = "Madison Dunn"
-    contactPhoneNumber = "3365100363"
-    streetAddress = @("420 Gallimore Dairy Rd", "Ste B, BLDG 1")
-    city = "Greensboro"
-    state = "NC"
-    zipCode = "27409"
+    contactName = ""
+    contactPhoneNumber = ""
+    streetAddress = @("", "")
+    city = ""
+    state = ""
+    zipCode = ""
     #$pickUpStart = ((Get-Date).AddHours(12)).ToString("yyyy-MM-ddTHH:mm:ss")
     pickUpStartTime = $pickUpStart
     packageCount = 1
     url = $baseUrl
     accountNumber = $account
     bearerToken = $bearer
-    confirmationEmail = @("mforet@abskids.com")
+    confirmationEmail = @("")
 }
 
 
